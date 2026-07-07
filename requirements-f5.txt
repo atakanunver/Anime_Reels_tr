@@ -1,0 +1,17 @@
+# ============================================================================
+#  F5-TTS İZOLE ORTAMI (f5-env) — requirements
+#  Kurulum:
+#    python3.11 -m venv f5-env
+#    source f5-env/bin/activate
+#    python -m pip install -r requirements-f5.txt
+#
+#  Bu ortam ana venv'den AYRI tutulur (torch sürüm çakışmasını önlemek için).
+#  Ana pipeline, F5 seslendirmeyi bu ortamda subprocess olarak çağırır
+#  (bkz. run_f5.sh). LD_LIBRARY_PATH ayarı için README'ye bak.
+# ============================================================================
+
+torch
+torchaudio
+f5-tts
+numpy
+soundfile

@@ -1,0 +1,35 @@
+# ============================================================================
+#  ANA ORTAM (venv) — requirements
+#  Kurulum:
+#    python3.11 -m venv venv
+#    source venv/bin/activate
+#    python -m pip install -r requirements-main.txt
+#
+#  NOT: onnxruntime-gpu 1.19.2 CUDA 12 içindir. Sisteminde CUDA 13 varsa
+#       bile bu sürüm CUDA 12 çalışma kütüphaneleriyle (aşağıdaki nvidia-*
+#       paketleri) uyumlu çalışır. LD_LIBRARY_PATH ayarı için README'ye bak.
+# ============================================================================
+
+# --- Anime filtre (ONNX) ---
+onnxruntime-gpu==1.19.2
+opencv-python-headless
+numpy
+tqdm
+
+# --- Ses deşifre (STT) ---
+faster-whisper==1.2.1
+
+# --- Türkçe çeviri ---
+google-genai==2.10.0
+
+# --- Yedek TTS (edge) + ses montajı ---
+edge-tts==7.2.8
+pydub
+requests
+
+# --- CUDA çalışma kütüphaneleri (Whisper + ONNX GPU için) ---
+nvidia-cublas-cu12
+nvidia-cudnn-cu12
+nvidia-curand-cu12
+nvidia-cufft-cu12
+nvidia-cuda-runtime-cu12
