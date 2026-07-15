@@ -1,29 +1,24 @@
 # Anime-Reels — Otomatik Türkçe Seslendirme + Anime Filtre Pipeline'ı
 
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
+![CUDA](https://img.shields.io/badge/CUDA-12-76B900?logo=nvidia&logoColor=white)
+![Whisper](https://img.shields.io/badge/STT-faster--whisper%20large--v3-412991)
+![F5-TTS](https://img.shields.io/badge/TTS-F5--TTS%20ses%20klonlama-EE4C2C)
+![ONNX](https://img.shields.io/badge/Anime%20filtre-White--box%20Cartoonization%20ONNX-005CED?logo=onnx&logoColor=white)
+![FFmpeg](https://img.shields.io/badge/mux-FFmpeg-007808?logo=ffmpeg&logoColor=white)
+
 Yabancı (İngilizce) Reels/kısa videoları **toplu olarak** Türkçeye seslendirip
 anime/çizgi film stiline çeviren, uçtan uca otomatik pipeline. Tamamen yerel
 donanımda çalışır (bulut TTS/render servisi yok).
 
-```
-Girdi video (İngilizce)
-      │
-      ▼
-1. SES DEŞİFRE      faster-whisper large-v3         (CUDA:2)
-      │
-      ▼
-2. TÜRKÇE ÇEVİRİ    Gemini 2.5-flash API
-      │
-      ▼
-3. SESLENDİRME      F5-TTS ses klonlama (Türkçe)    (CUDA:2)
-      │
-      ▼
-4. ANIME FİLTRE     White-box Cartoonization ONNX   (CUDA:0/1/2 paralel)
-      │
-      ▼
-5. BİRLEŞTİRME      ffmpeg mux (anime video + TR ses)
-      │
-      ▼
-Çıktı: output/<video>_anime_TR.mp4
+```mermaid
+flowchart TD
+    A["🎬 Girdi video (İngilizce)"] --> B["1️⃣ SES DEŞİFRE<br/>faster-whisper large-v3 — CUDA:2"]
+    B --> C["2️⃣ TÜRKÇE ÇEVİRİ<br/>Gemini 2.5-flash API"]
+    C --> D["3️⃣ SESLENDİRME<br/>F5-TTS ses klonlama (Türkçe) — CUDA:2"]
+    D --> E["4️⃣ ANIME FİLTRE<br/>White-box Cartoonization ONNX — CUDA:0/1/2 paralel"]
+    E --> F["5️⃣ BİRLEŞTİRME<br/>ffmpeg mux (anime video + TR ses)"]
+    F --> G["✅ output/&lt;video&gt;_anime_TR.mp4"]
 ```
 
 ---
@@ -266,4 +261,3 @@ Bu projede yaşanan ve tekrar yaşanmaması gereken tuzaklar:
   kullanım hakkına sahip olduğun bir ses (kendi sesin, lisanslı/telifsiz
   kayıt) tercih edilmeli.
 - Kişisel/deneme kullanımı ile yayın/ticari kullanım hukuken farklıdır.
-```
